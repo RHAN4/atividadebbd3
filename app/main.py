@@ -35,15 +35,19 @@ def main():
                 service.criar_usuario(nome=nome, email=email, senha=senha)
                 
             case 2:
-                print("\n - Pesquisa por email -")
-                email_consulta = input("Digite o email desejado: ")
-                # consulta = repository.pesquisar_usuario_por_email(email=email_consulta)
-                consulta = repository.session.query(Usuario).filter_by(email = email_consulta).first()
-                if consulta:
-                     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
-                else:
-                    print("Usuário não encontrado")
+                email = input("Digite o email desejado: ")
+                repository.pesquisar_usuario_por_email(email=email)
+                # print("\n - Pesquisa por email -")
+                # # consulta = repository.pesquisar_usuario_por_email(email=email_consulta)
+
+                # consulta = repository.session.query(Usuario).filter_by(email = email_consulta).first()
+                # if consulta:
+                #     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
+                # else:
+                #     print("Usuário não encontrado.")
                 
+                # input("Presse qualquer tecla!")
+
             case 3:
                 print("\n - Atualização de dados -")
                 

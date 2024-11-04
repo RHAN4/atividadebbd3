@@ -23,5 +23,22 @@ class UsuarioService:
         except Exception as erro:
             print(f"Ocorreu um erro inesperado: {erro}")
 
+    def pesquisar_usuario_por_email(self, email: str):
+        try:
+            print("\n - Pesquisa por email -")
+            email = input("Digite o email desejado: ")
+            consulta = self.repository.pesquisar_usuario_por_email(email=email)
+
+                # consulta = repository.session.query(Usuario).filter_by(email = email_consulta).first()
+            if consulta:
+                print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
+            else:
+                print("Usuário não encontrado.")
+            
+            input("Precione qualquer tecla para continuar.")
+        except TypeError as erro:
+            print(f"Usuário não encontrado.")
+
+
     def listar_todos_usuarios(self):
         return self.repository.listar_usuarios()
