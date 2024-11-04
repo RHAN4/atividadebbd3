@@ -3,23 +3,22 @@ from repositories.usuario_repository import UsuarioRepository
 from config.database import Session
 import os
 
+# MENU DE OPÇÕES
+def menu():
+    print("\t - MENU DE OPÇÕES - ")
+    print("""  \t1 - Adicionar usuário. 
+        2 - Pesquisar um usuário. 
+        3 - Atualizar dados de um usuário.
+        4 - Excluir usuário.
+        5 - Exibir todos os usuários cadastrados
+        0 - Sair.""")
+    
 def main():
     session = Session()
     repository = UsuarioRepository(session)
     service = UsuarioService(repository)
 
     # Solicitando dados para o usuário
-
-    # MENU DE OPÇÕES
-    def menu():
-        print("\t - MENU DE OPÇÕES - ")
-        print("""  \t1 - Adicionar usuário. 
-            2 - Pesquisar um usuário. 
-            3 - Atualizar dados de um usuário.
-            4 - Excluir usuário.
-            5 - Exibir todos os usuários cadastrados
-            0 - Sair.""")
-        
     while True:
         menu()
         opcao = int(input("\nDigite a opção desejada: "))
@@ -32,7 +31,7 @@ def main():
                 senha = input("Digite o seu senha: ")
 
                 service.criar_usuario(nome=nome, email=email, senha=senha)
-                break
+                
 
             case 2:
                 print("\n - Pesquisa por email -")
@@ -40,11 +39,11 @@ def main():
                 lista_email = repository.pesquisar_usuario_por_email(email=email)
                 for usuario in lista_email:
                     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
-                break
+                
 
             case 3:
                 print("\n - Atualização de dados -")
-                break
+                
 
             case 4:
                 print("\n - Excluir usuário -")
@@ -53,16 +52,18 @@ def main():
                 senha = input("Digite o senha: ")
 
                 repository.excluir_usuario()
-                break
+                
 
             case 5:
                 print("\n - Exibir todos os usuários cadastrados -")
                 lista_usuarios = service.listar_todos_usuarios()
                 for usuario in lista_usuarios:
                     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
-                break
+                
+                
 
             case 0:
+                print("Saindo...")
                 break
 
 if __name__ == "__main__":
