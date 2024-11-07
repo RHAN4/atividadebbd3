@@ -35,8 +35,10 @@ def main():
                 service.criar_usuario(nome=nome, email=email, senha=senha)
                 
             case 2:
-                email = input("Digite o email desejado: ")
-                repository.pesquisar_usuario_por_email(email=email)
+                print("\n - Pesquisa por email -")
+                # email = input("Digite o email desejado: ")
+                service.pesquisar_usuario_por_email()
+                # service.session.query(Usuario).filter_by(email = email).first()
                 # print("\n - Pesquisa por email -")
                 # # consulta = repository.pesquisar_usuario_por_email(email=email_consulta)
 
@@ -50,15 +52,13 @@ def main():
 
             case 3:
                 print("\n - Atualização de dados -")
-                
+                # email = input("Digite o email do usuário: ")
+                service.atualizar_dados()
+
 
             case 4:
                 print("\n - Excluir usuário -")
-                nome = input("Digite o nome: ")
-                email = input("Digite o email: ")
-                senha = input("Digite o senha: ")
-
-                repository.excluir_usuario(usuario)
+                service.excluir_dados()
                 
 
             case 5:
@@ -71,6 +71,9 @@ def main():
             case 0:
                 print("Saindo...")
                 break
+
+            case _:
+                print("Digite uma opção válida.")
 
 if __name__ == "__main__":
     os.system("cls || clear")
