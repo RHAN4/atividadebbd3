@@ -1,21 +1,20 @@
 import pytest
-from app.models.usuario_model import Usuario
-from app.config.database import db
+from models.usuario_model import Usuario
 
 @pytest.fixture
 def usuario_valido():
-    usuario = Usuario("Marta", "marta@gmail.com", "1234")
+    usuario = Usuario("José", "jose@gmail.com", "1234")
     return usuario
 
 def test_validar_nome(usuario_valido):
-    assert usuario_valido.nome == "Marta"
+    assert usuario_valido.nome == "José"
 
 def test_validar_email(usuario_valido):
-    assert usuario_valido.email == "marta@gmail.com"
+    assert usuario_valido.email == "jose@gmail.com"
 
 def test_validar_senha(usuario_valido):
     assert usuario_valido.senha == "1234"
 
-def test_nome_invalido(usuario_valido):
+def test_nome_invalido():
     with pytest.raises(TypeError, match="O nome deve ser um texto"):
-        Usuario(999, "marta@gmail.com", "1234")
+        Usuario(2, "jose@gmail.com", "1234")

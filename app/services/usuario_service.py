@@ -10,6 +10,7 @@ class UsuarioService:
             usuario = Usuario(nome=nome, email=email, senha=senha)
             novo_usuario = self.repository.pesquisar_usuario_por_email(usuario.email)
 
+
             if novo_usuario:
                 print("Usuário já cadastrado!")
                 return
@@ -17,6 +18,10 @@ class UsuarioService:
             self.repository.salvar_usuario(usuario)
             print("\nUsuário cadastrado.")
 
+            if not nome:
+                raise ValueError("Esse campo não pode estar vazio!")
+            return True
+            
         except TypeError as erro:
             print(f"Erro ao salvar o usuário: {erro}")
         except Exception as erro:
