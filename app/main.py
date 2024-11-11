@@ -1,8 +1,11 @@
-from models.usuario_model import Usuario
-from services.usuario_service import UsuarioService
-from repositories.usuario_repository import UsuarioRepository
-from config.database import Session
 import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from app.services.usuario_service import UsuarioService
+from app.repositories.usuario_repository import UsuarioRepository
+from app.config.database import Session
 
 # MENU DE OPÇÕES
 def menu():
@@ -36,23 +39,10 @@ def main():
                 
             case 2:
                 print("\n - Pesquisa por email -")
-                # email = input("Digite o email desejado: ")
                 service.pesquisar_usuario_por_email()
-                # service.session.query(Usuario).filter_by(email = email).first()
-                # print("\n - Pesquisa por email -")
-                # # consulta = repository.pesquisar_usuario_por_email(email=email_consulta)
-
-                # consulta = repository.session.query(Usuario).filter_by(email = email_consulta).first()
-                # if consulta:
-                #     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
-                # else:
-                #     print("Usuário não encontrado.")
-                
-                # input("Presse qualquer tecla!")
 
             case 3:
                 print("\n - Atualização de dados -")
-                # email = input("Digite o email do usuário: ")
                 service.atualizar_dados()
 
 

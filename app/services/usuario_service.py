@@ -1,5 +1,5 @@
-from models.usuario_model import Usuario
-from repositories.usuario_repository import UsuarioRepository
+from app.models.usuario_model import Usuario
+from app.repositories.usuario_repository import UsuarioRepository
 
 class UsuarioService:
     def __init__(self, repository: UsuarioRepository):
@@ -8,19 +8,15 @@ class UsuarioService:
     def criar_usuario(self, nome: str, email: str, senha: str):
         try:
             usuario = Usuario(nome=nome, email=email, senha=senha)
-            novo_usuario = self.repository.pesquisar_usuario_por_email(usuario.email)
+            cadastrado = self.repository.pesquisar_usuario_por_email(usuario.email)
 
 
-            if novo_usuario:
+            if cadastrado:
                 print("Usuário já cadastrado!")
                 return
             
             self.repository.salvar_usuario(usuario)
-            print("\nUsuário cadastrado.")
-
-            if not nome:
-                raise ValueError("Esse campo não pode estar vazio!")
-            return True
+            print("\nUsuário cadastrado com sucesso!")
             
         except TypeError as erro:
             print(f"Erro ao salvar o usuário: {erro}")
@@ -54,7 +50,7 @@ class UsuarioService:
                 usuario_cadastrado.nome = input("Digite o novo nome: ")
                 usuario_cadastrado.email = input("Digite o novo email: ")
                 usuario_cadastrado.senha = input("Digite a nova senha: ")
-                self.repository.salvar_usuario(usuario_cadastrado)
+                self.repository.atualizar_usuario(usuario_cadastrado)
                 print("Dados atualizados com sucesso.")
 
             else:
