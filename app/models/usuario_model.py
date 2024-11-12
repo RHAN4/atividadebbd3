@@ -21,17 +21,18 @@ class Usuario(Base):
 
     def _verificar_nome(self, nome):
         if not isinstance(nome, str) or not nome.strip():
-            raise TypeError("O nome deve ser um texto.")
+            raise TypeError("Nome não pode estar vazio e deve ser um texto. Tente novamente.")
         return nome
+    
         
     def _verificar_email(self, email):
         if not isinstance(email, str) or not email.strip():
-            raise TypeError("Email deve ser um texto.")
+            raise TypeError("Email não pode estar vazio e deve ser um texto. Tente novamente.")
         return email
 
     def _verificar_senha(self, senha):
         if not isinstance(senha, str) or not senha.strip():
-            raise TypeError("Senha deve ser um texto.")
+            raise TypeError("Senha não pode estar vazia e deve ser um texto. Tente novamente.")
         return senha
 
 

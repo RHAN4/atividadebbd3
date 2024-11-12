@@ -31,9 +31,7 @@ class UsuarioService:
 
                 # consulta = repository.session.query(Usuario).filter_by(email = email_consulta).first()
             if consulta:
-                print(f"""Nome: {consulta.nome}
-                      Email: {consulta.email}
-                      Senha: {consulta.senha}""")
+                print(f"Nome: {consulta.nome} - Email: {consulta.email} - Senha: {consulta.senha}")
             else:
                 print("Usuário não encontrado.")
             

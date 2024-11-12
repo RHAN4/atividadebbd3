@@ -11,12 +11,12 @@ from app.config.database import Session
 def menu():
     print("\n")
     print("\t - MENU DE OPÇÕES - ")
-    print("""  \t1 - Adicionar usuário. 
-        2 - Pesquisar um usuário. 
-        3 - Atualizar dados de um usuário.
-        4 - Excluir usuário.
-        5 - Exibir todos os usuários cadastrados
-        0 - Sair.""")
+    print("1 - Adicionar usuário.")
+    print("2 - Pesquisar um usuário.")
+    print("3 - Atualizar dados de um usuário.")
+    print("4 - Excluir usuário.")
+    print("5 - Exibir todos os usuários cadastrados.")
+    print("0 - Sair.")
     
 def main():
     session = Session()
@@ -30,25 +30,29 @@ def main():
 
         match(opcao):
             case 1:
-                print("\n - Adicionando usuário -")
+                print("\n - Adicionar usuário -")
                 nome = input("Digite o seu nome: ")
                 email = input("Digite o seu email: ")
                 senha = input("Digite o seu senha: ")
 
                 service.criar_usuario(nome=nome, email=email, senha=senha)
+                input("\nDigite qualquer tecla para continuar. ")
                 
             case 2:
                 print("\n - Pesquisa por email -")
                 service.pesquisar_usuario_por_email()
+                input("\nDigite qualquer tecla para continuar. ")
 
             case 3:
                 print("\n - Atualização de dados -")
                 service.atualizar_dados()
+                input("\nDigite qualquer tecla para continuar. ")
 
 
             case 4:
                 print("\n - Excluir usuário -")
                 service.excluir_dados()
+                input("Digite qualquer tecla para continuar. ")
                 
 
             case 5:
@@ -56,6 +60,7 @@ def main():
                 lista_usuarios = service.listar_todos_usuarios()
                 for usuario in lista_usuarios:
                     print(f"Nome: {usuario.nome} - Email: {usuario.email} - Senha: {usuario.senha}")
+                input("\nDigite qualquer tecla para continuar. ")
 
 
             case 0:
@@ -63,7 +68,7 @@ def main():
                 break
 
             case _:
-                print("Digite uma opção válida.")
+                print("\nDigite uma opção válida. Tente novamente.")
 
 if __name__ == "__main__":
     os.system("cls || clear")

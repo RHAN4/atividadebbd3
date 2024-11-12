@@ -16,13 +16,13 @@ from app.models.usuario_model import Usuario
 #     assert usuario_valido.senha == "1234"
 
 def test_nome_invalido():
-    with pytest.raises(TypeError, match="O nome deve ser um texto."):
-        Usuario(2, "jose@gmail.com", "1234")
+    with pytest.raises(TypeError, match="Nome não pode estar vazio e deve ser um texto. Tente novamente"):
+        Usuario(2, "jose@gmail.com", "1234") or Usuario("", "jose@gmail.com", "1234")
 
 def test_email_invalido():
-    with pytest.raises(TypeError, match="Email deve ser um texto."):
-        Usuario("José", 20, "1234")
+    with pytest.raises(TypeError, match="Email não pode estar vazio e deve ser um texto. Tente novamente."):
+        Usuario("José", 20, "1234") or Usuario("José", "", "1234")
 
 def test_senha_invalida():
-    with pytest.raises(TypeError, match="Senha deve ser um texto."):
-        Usuario("José", "jose@gmail.com", 1234)
+    with pytest.raises(TypeError, match="Senha não pode estar vazia e deve ser um texto. Tente novamente."):
+        Usuario("José", "jose@gmail.com", 1234) or Usuario("José", "jose@gmail.com", "")
